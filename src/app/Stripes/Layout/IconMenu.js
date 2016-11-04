@@ -7,7 +7,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import { StripesTheme } from '../Core/Stripes'
 import {Icon} from  '../Symbols/Icon'
-import {Paper} from './Paper'
 
 export class IconMenu extends StripesTheme {
 
@@ -24,7 +23,6 @@ export class IconMenu extends StripesTheme {
         super(props);
 
         this.state = {
-            style: {},
             open: false
         };
 
@@ -33,31 +31,26 @@ export class IconMenu extends StripesTheme {
         this.toggleMenuOnBlur = this.toggleMenuOnBlur.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setState({
             style: this.getStyles()
         });
     }
 
     toggleMenu(e, show, focus) {
-        console.log(show);
         this.setState({
             open: show === undefined ? !this.state.open : show
         }, () => {
             if(this.state.open) {
-                console.log('i will focus...');
                 this.refs.MenuBody.focus();
             }
             this.setState({
                 style: this.getStyles()
-            });
+            },this.forceUpdate);
         });
     }
 
     toggleMenuOnBlur(e) {
-        this.toggleMenu(null, false, false);
-        e.preventDefault();
-        e.stopImmediatePropagation;
         return false;
     }
 
@@ -70,31 +63,44 @@ export class IconMenu extends StripesTheme {
                 display: 'inline'
             },
             icon: {
-                cursor: 'pointer'
+                transition: 'all .5s',
+                cursor: 'pointer',
+                padding: spacing.padding,
+                background: this.state.open ? 'white' : 'transparent',
+                boxShadow: this.state.open ? '0 0 5px rgb(200,200,200)' : '0 0 0 rgb(200,200,200)',
+                zIndex: 1
             },
-            paper: {
+            menu: {
                 position: 'absolute',
-                top: '100%',
-                left: '0',
+                top: this.props.direction !== 'top' ? '100%' : 'auto',
+                bottom: this.props.direction === 'top' ? 'calc(100% + ' + spacing.padding*2 + 'px)' : 'auto',
+                left: this.props.direction === 'left' ? 'auto' : 0,
+                right: this.props.direction === 'left' ? 0 : 'auto',
                 transition: 'all .5s',
                 maxHeight: this.state.open ? '800px' : '0',
                 opacity: this.state.open ? '1.0' : '0.0',
                 maxWidth: this.props["max-width"],
                 overflow: 'hidden',
                 padding: 0,
-                minWidth: '200px'
+                minWidth: '200px',
+                outline: 'none',
+                userSelect: 'none',
+                MozUserSelect: 'none',
+                WebkitUserSelect: 'none',
+                msUserSelect: 'none',
+                background: 'white',
+                boxShadow: this.state.open ? '0 3px 5px rgb(200,200,200)' : '0 2px 0 rgb(200,200,200)',
+                zIndex: 2
             }
-        }
-
+        };
+        styleObj.base = Object.assign(styleObj.base, this.props.style);
         return styleObj;
     }
 
     render() {
-        var baseStyle = this.state.style.base; //this.props.style ? Object.assign(this.state.style.base, this.props.style) : this.state.style.base;
-        console.log(this.state.style.paper);
         return (
             <section
-                style={baseStyle}
+                style={this.state.style.base}
                 disabled={this.props.disabled}
             >
                 <Icon
@@ -103,13 +109,13 @@ export class IconMenu extends StripesTheme {
                     onClick={this.toggleMenu}
                     basestyle={this.state.style.icon}
                 />
-                <Paper
-                    style={this.state.style.paper}
-                    ref="MenuBody"
-                    onBlur={this.toggleMenuOnBlur}
+                <div style={this.state.style.menu}
+                     tabIndex="0"
+                     ref="MenuBody"
+                     onBlur={this.toggleMenuOnBlur}
                 >
                     {this.props.children}
-                </Paper>
+                </div>
             </section>
         )
     }
