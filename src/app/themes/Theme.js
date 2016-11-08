@@ -31,18 +31,43 @@ export default {
             width: 20,
             height: 20
         },
+        headers: {
+            baseFontSize: 1.6,
+            padding: basePadding*4,
+            margin: baseMargin*4
+        },
         inputs: {
             padding: basePadding,
             margin: baseMargin,
             fontSize: '1.8rem',
             errorFontSize: '1.2rem',
             borderRadius: 2,
-            underlineHeight: 2
+            underlineHeight: 2,
+            menuZIndex: 2000
         },
         navbar: {
             minHeight: 64,
             padding: basePadding*4,
             fontSize: '1.8rem'
+        },
+        tabmenu: {
+            minHeight: 64,
+            padding: basePadding*4,
+            fontSize: '1.8rem',
+            indicatorHeight: 2
+        },
+        table: {
+            fontSize: '1.5rem',
+            header: {
+                minHeight: 64 - (basePadding*2)
+            },
+            cell: {
+                padding: basePadding*2,
+                sortWidth: 10
+            },
+            row: {
+                minHeight: 54
+            }
         }
     }
 };

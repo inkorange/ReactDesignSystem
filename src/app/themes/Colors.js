@@ -1,16 +1,16 @@
 
 let primaryColor = "#3366CC";
 let baseTextColor = "#212121";
+let secondaryTextColor = "white";
 let inactiveColor = "#dbdbdb";
 let errorColor = "#DB4437";
 let inactiveErrorColor = "#DB8D86";
 let secondaryColor = "";
 let tertiaryColor = "";
 let borderColor = "#8B8F92";
+let menuColor = "#2E4151";
 
 module.exports = {
-    H1Color: 'black',
-    H3Color: 'rgb(100,100,100)',
     default: {
         textColor: primaryColor,
         hoverText: '',
@@ -18,15 +18,20 @@ module.exports = {
         backgroundColor: 'transparent',
         backgroundHover: 'rgba(0,0,0,.08)',
         iconColor: '#8B8F92',
-        headerBackgroundColor: '#1565C0'
-    },
+        headerBackgroundColor: '#1565C0',
+        activeIcon: "#3366CC",
+        inactiveIcon: "#dbdbdb"
+},
     primary: {
         textColor: 'white',
         hoverText: '',
         border: '',
         backgroundColor: '#1565C0',
         backgroundHover: '#2d80df',
-        iconColor: '#1565C0'
+        iconColor: '#1565C0',
+        activeIcon: "#3366CC",
+        inactiveIcon: "#dbdbdb"
+
     },
     secondary: {
         textColor: baseTextColor,
@@ -34,7 +39,14 @@ module.exports = {
         border: '',
         backgroundColor: 'rgba(0,0,0,.2)',
         backgroundHover: 'rgba(0,0,0,.08)',
-        iconColor: '#1565C0'
+        iconColor: '#1565C0',
+        activeIcon: "#3366CC",
+        inactiveIcon: "#dbdbdb"
+
+    },
+    headers: {
+        H1Color: 'black',
+        H3Color: 'rgb(100,100,100)'
     },
     notification: {
         backgroundColor: 'rgba(0,0,0,.75)'
@@ -55,7 +67,23 @@ module.exports = {
         highlightBorderColor: primaryColor
     },
     navbar: {
-        background: '#2E4151',
-        textColor: 'white'
+        background: menuColor,
+        textColor: secondaryTextColor
+    },
+    tabmenu: {
+        background: primaryColor,
+        textColor: secondaryTextColor,
+        indicator: '#FFFF8C'
+    },
+    table: {
+        header: {
+            backgroundColor: 'transparent',
+            border: '#A6A6A6'
+        },
+        row: {
+            border: '#e0e0e0',
+            hoverColor: '#f5f5f5',
+            zebraStripe: '#f5f5f5'
+        }
     }
 }

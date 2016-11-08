@@ -57,7 +57,8 @@ export class SelectPanel extends StripesTheme {
             results: {
                 position: 'absolute',
                 top: '32px',
-                right: 0,
+                minWidth: '100%',
+                maxWidth: '100vw',
                 left: 0,
                 transition: 'all .3s',
                 maxHeight: this.state.show ? '500px' : '0px',
@@ -66,7 +67,7 @@ export class SelectPanel extends StripesTheme {
                 background: 'white',
                 padding: this.state.show ? '10px' : '0 10px',
                 fontSize: '1.6rem',
-                zIndex: 2,
+                zIndex: spacing.menuZIndex,
                 borderRadius: '0 0 2px 2px',
                 boxShadow: '0 2px 10px rgba(0,0,0,.5)',
                 outline: 'none'
@@ -81,7 +82,8 @@ export class SelectPanel extends StripesTheme {
             resultsli: {
                 padding: '10px',
                 margin: '0',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                whiteSpace: 'nowrap'
             },
             resultsp: {
                 color: 'black',
@@ -101,6 +103,8 @@ export class SelectPanel extends StripesTheme {
             newSelect = newSelect >= this.props.data.length ? 0 : newSelect;
             this.setState({
                 selected: newSelect
+            }, () => {
+                this.refs.panelcontainer.getElementsByTagName("LI")[newSelect].scrollIntoView({block: "end", behavior: "smooth"});
             });
             e.stopImmediatePropagation();
             e.preventDefault();
@@ -144,7 +148,8 @@ export class SelectPanel extends StripesTheme {
 
     open(willFocus) {
         this.setState({
-            show: true
+            show: true,
+            selected: 0
         }, () => {
             if (willFocus === undefined || willFocus) {
                 this.refs.panelcontainer.focus();
