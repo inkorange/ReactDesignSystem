@@ -1,0 +1,277 @@
+body {
+    //background-color: black;
+}
+
+.MainContent {
+    background-image: url('../images/hubback.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity .25s;
+    box-shadow: 0 300px 250px -100px rgba(255, 255, 255, 0.95) inset;
+    img.fedex-logo {
+        max-width: 600px;
+        width: 50%;
+        min-width: 350px;
+        display: block;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+    .main_content_child {
+        margin: 20px;
+        padding-bottom: 80px;
+        > section {
+            margin: 40px 20px;
+        }
+
+        h3 {
+            margin-top: 60px!important;
+
+        }
+    }
+}
+
+
+footer.zebra {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    background: #EBEBEB;
+    padding: $baseMargin * 3;
+    box-shadow: 0 5px 10px -4px rgba(0, 0, 0, 0.25) inset;
+    border-top: #007CB0 solid 4px;
+    img {
+        width: 200px;
+        clear:both;
+    }
+    p {
+        color: rgb(100,100,100);
+        font-size: 1.0rem;
+        line-height: 1.2rem;
+        margin: $baseMargin 0 0 0;
+    }
+}
+
+.TabularListing {
+    table {
+        thead,
+        tbody {
+            tr {
+                th {
+                    &.column-notes {
+                        .Icon[data-name="alert"] {
+                            display: none!important;
+                        }
+                        @media #{$small} {
+                            .Icon[data-name="alert"] {
+                                display: inline-block!important;
+                            }
+                            label {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                td, th {
+                    padding: $baseMargin*2;
+                    vertical-align: top;
+                    overflow: initial!important;
+                    line-height: 1.6rem;
+                    min-height: 60px;
+                    label {
+                        > span {
+                            @media #{$small} {
+                                display: none;
+                            }
+                        }
+                    }
+                    em {
+                        font-size: 90%;
+                        display: inline;
+                        font-style: normal;
+                        &:before {
+                            clear: both;
+                            content: '';
+                            display: block;
+                        }
+
+                    }
+                    *[data-filterable=true] {
+                        cursor: pointer;
+                        &:hover {
+                            color: red;
+                        }
+                    }
+                    &.column-active-notes {
+                        width: 60px;
+                        min-width: 60px;
+                        overflow: initial!important;
+                    }
+                    &.column-notes {
+                        width: 80px;
+                        min-width: 80px;
+                        overflow: initial!important;
+                        @media #{$small} {
+                            width: 50px;
+                            min-width: 50px;
+                            label {
+                                display: none;
+                            }
+                            .Icon {
+                                display: block;
+                            }
+                        }
+                        em {
+                            float: left;
+                            margin-right: 5px;
+                        }
+                        > span + em {
+                            display: none;
+                        }
+                        > span + em + em {
+                            top: -8px;
+                            position: relative;
+                            left: -8px;
+                            svg {
+                                fill: white!important;
+                            }
+                        }
+                    }
+                    &.column-dest,
+                    &.column-code {
+                        @media #{$large} {
+                            width: 100px;
+                            min-width: 100px;
+                        }
+                        @media #{$small} {
+                            width: 85px;
+                            min-width: 85px;
+                        }
+                    }
+                    &.ad-column-opened {
+                        @media #{$large} {
+                            width: 140px;
+                            min-width: 140px;
+                        }
+                        @media #{$small} {
+                            width: 85px;
+                            min-width: 85px;
+                        }
+                    }
+                    &.column-opened,
+                    &.column-closed {
+                        @media #{$large} {
+                            width: 110px;
+                            min-width: 110px;
+                        }
+                        @media #{$small} {
+                            width: 95px;
+                            min-width: 95px;
+                        }
+                    }
+                    &.column-packages {
+                        text-align: right;
+                        @media #{$large} {
+                            width: 90px;
+                            min-width: 90px;
+                        }
+                        @media #{$small} {
+                            width: 60px;
+                            min-width: 60px;
+                        }
+                        label {
+                            float: right;
+                            border-left: 5px solid transparent;
+                        }
+                    }
+                    &.column-trailer {
+                        @media #{$large} {
+                            width: 90px;
+                            min-width: 90px;
+                        }
+                        @media #{$small} {
+                            width: 70px;
+                            min-width: 70px;
+                        }
+                        overflow: unset!important;
+                    }
+                    &.column-note {
+                        white-space: initial!important;
+                    }
+                    &.column-rtcube,
+                    &.column-full,
+                    &.column-scanrate {
+                        text-align: right;
+                        padding-right: 20px!important;
+                        @media #{$large} {
+                            label {
+                                display: none;
+                            }
+                        }
+                        @media #{$small} {
+                            width: 50px;
+                            min-width: 50px;
+                        }
+                    }
+                    &.column-weight {
+                        padding-right: 20px!important;
+                        @media #{$large} {
+                            label {
+                                display: none;
+                            }
+                        }
+                        @media #{$small} {
+                            width: 70px;
+                            min-width: 70px;
+                        }
+
+                    }
+
+                    &.number {
+                        > div:first-of-type {
+                            right: -5px!important;
+                        }
+                        text-align: right;
+                        .Icon {
+                            float: right;
+                            position: relative;
+                            left: -5px;
+                        }
+                        label {
+                            float: right;
+                            border-right: 10px solid transparent;
+                        }
+                    }
+                }
+            }
+        }
+        tbody {
+            td {
+                &.number {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+}
+
+/*
+fieldset:first-of-type {
+    > label:first-of-type {
+        margin-top: 0!important;
+    }
+}
+
+
+.FloaterPanel, .FloaterBase {
+    transition: .5s opacity;
+    opacity: 0;
+    &.show {
+        opacity: 1.0;
+    }
+}
+*/
+
