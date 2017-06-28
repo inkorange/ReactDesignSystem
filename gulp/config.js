@@ -3,52 +3,27 @@ var dest = './build',
     minify = false;
 
 module.exports = {
-
   markup: {
-    src: src + "/www/index.html",
+    src: "./www/index.html",
     dest: dest
-  },
-  version: {
-      src: src + '/www/version.json',
-      dest: dest + '/version.json'
-  },
-  vendor: {
-    src: src + "/app/vendor/**",
-    dest: dest + '/js'
-  },
-  ico: {
-    src: src + "/app/assets/**/*.ico",
-    dest: dest
-  },
-  resources: {
-    src: src + "/app/assets/**/*.pdf",
-    dest: dest + '/resources'
-  },
-  model: {
-    src: src + "/app/models/mock/**",
-    dest: dest + '/mock'
   },
   browserify: {
     debug: true,
     minify: minify,
+    extensions: ['react', 'react-dom'],
     bundleConfigs: [{
-      entries: src + '/app/app.jsx',
+      entries: './www/app.jsx',
       dest: dest + '/js',
       outputName: 'app.js'
     }]
   },
-  sass: {
-      errLogToConsole: true,
-      outputStyle: minify ? 'compressed' : null
-  },
-    svg: {
-        src: src + '/app/images/sprites/**/*.svg',
-        dest: dest + '/css/svg',
-        injectSrc: dest + '/index.html'
+    sass: {
+        errLogToConsole: true,
+        outputStyle: minify ? 'compressed' : null
     },
-    images: {
-        src: [src + '/app/images/**/*.png',src + '/app/images/**/*.jpg',src + '/app/images/**/*.gif',src + '/app/images/**/*.svg','!' + src + '/app/images/sprites/*.svg'],
-        dest: dest + '/images'
+    font: {
+        src: ['./www/stylesheets/*.woff2', './www/stylesheets/*.woff', './www/stylesheets/*.ttf'],
+        dest: dest + '/css'
     },
     server: {
       // basic local server configuration for development.
@@ -72,5 +47,5 @@ module.exports = {
           root: '/mock',
           dest: dest + "/mock"
       }
-    },
+    }
 };

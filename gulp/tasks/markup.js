@@ -1,20 +1,13 @@
 var gulp = require('gulp');
 var replace = require('gulp-token-replace');
-var sass = require('gulp-sass');
 var git = require('git-rev');
 var del = require('del');
-var svgmin = require('gulp-svgmin');
 var path = require('path');
 var inject = require('gulp-inject');
-var BUILD_ENV = require('../config').defaultEnv;
-var BUILD_CLIENT = require('../config').defaultClient;
 var markupconfig = require('../config').markup;
 var vendorconfig = require('../config').vendor;
 var modelconfig = require('../config').model;
-var icoconfig =  require('../config').ico;
-var resourcesconfig = require('../config').resources;
-var imgconfig =  require('../config').images;
-var versionconfig =  require('../config').version;
+var fontconfig = require('../config').font;
 var staticmock =  require('../config').staticmock;
 
 module.exports = {
@@ -38,11 +31,8 @@ module.exports = {
                 }}))
                 .pipe(gulp.dest(markupconfig.dest)),
 
-            gulp.src(icoconfig.src)
-                .pipe(gulp.dest(icoconfig.dest)),
-
-            gulp.src(resourcesconfig.src)
-                .pipe(gulp.dest(resourcesconfig.dest))
+            gulp.src(fontconfig.src)
+                .pipe(gulp.dest(fontconfig.dest))
         ];
     },
 
@@ -50,11 +40,6 @@ module.exports = {
         console.log('vendor', vendorconfig.src, vendorconfig.dest);
         return gulp.src(vendorconfig.src)
             .pipe(gulp.dest(vendorconfig.dest));
-    },
-    images: function () {
-        console.log('images', imgconfig.src, imgconfig.dest);
-        return gulp.src(imgconfig.src)
-            .pipe(gulp.dest(imgconfig.dest));
     },
     model: function() {
         console.log('models', modelconfig.src, modelconfig.dest);

@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 const express = require('express');
 const path = require('path');
-const port = process.env.PORT || 3010;
+const port = process.env.PORT || 3011;
 const app = express();
 
 var options = require('../config').server;
@@ -13,10 +13,11 @@ module.exports = function() {
     //app.use(options.css.root, express.static(options.css.dest));
     //app.use(options.js.root, express.static(options.js.dest));
 
-    app.get('', function (req, res) {
-        res.send('/load_areas/all/doors');
+    // passing through html requests
+    app.get('*:file.html', function (request, response){
+        var file = request.params.file;
+        response.sendFile(path.resolve(options.dest, '', file + ".html"));
     });
-
     // passing through ico requests
     app.get('*:file.ico', function (request, response){
         var file = request.params.file;

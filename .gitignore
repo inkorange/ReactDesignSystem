@@ -1,6 +1,7 @@
-/style
-node_modules
+/lib
+/node_modules
 build
 .idea
 *.log
 *.zip
+*.tgz
